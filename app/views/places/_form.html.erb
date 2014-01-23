@@ -1,0 +1,11 @@
+<%= simple_form_for @place do |form| %>
+	
+	<%= form.input :title %>
+	<%= form.input :post_code, label: "Post Code" %>
+	<%= form.input :plan, label: "Plan" %>
+
+
+	<%= form.button :submit, "Save" %>
+
+
+<% end %>

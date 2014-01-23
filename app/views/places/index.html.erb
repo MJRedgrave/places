@@ -1,0 +1,43 @@
+
+<section id="info">
+
+	<header>
+ 		<h1><a href="#">Clients</a></h1>
+		<h2>Client Locations</h2>
+  	</header>
+  	<!-- to add a search form -->
+  	<form action="/" method="get">
+  		<input type="text" name="location">
+  	</form>
+	<ul>
+		<% @places.each do |place| %>
+			<li data-lat="<%= place.latitude %>" data-lng="<%= place.longitude %>">
+				<%= place.title %> <br>
+				<%= place.post_code %> <br>
+				<%= place.plan %> <br>
+				<%= place.latitude %> <br>
+				<%= place.longitude %> <br>
+
+				<% if params[:location].present? %>
+					<p><%= place.distance_to(params[:location]).round(1) %>km away</p>
+				<% end %>
+			</li>
+	
+			<div class="actions">
+				<%= link_to "Edit", edit_place_path(place), class: "edit" %>
+			</div>
+			
+			<div class="actions">
+				<%= link_to "Delete", place_path(place), method: :delete, class: "Delete", confirm: "are you sure?" %>
+			</div>
+
+		<% end %>
+	</ul>
+
+
+</section>
+
+<section id="map"></section>
+
+<%= link_to "add a place", new_place_path, class: "button" %>
+
